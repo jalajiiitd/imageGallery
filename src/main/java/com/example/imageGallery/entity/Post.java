@@ -16,16 +16,17 @@ import javax.persistence.OneToMany;
 public class Post {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="post_id")
 	private Long photoId;
 	
 	@Lob
-	@Column(name="POST", nullable=false, columnDefinition="mediumblob")
+	@Column(name="photo", nullable=false, columnDefinition="mediumblob")
 	private byte[] photo;
 	
 	private Long likeCount;
 	
-//	@OneToMany
+//	@OneToMany // EAGER, FETCH, LAZY 
 //	@JoinColumn(name="commentId")
 //	private Set<Comments> comments = new HashSet<>();
 	
