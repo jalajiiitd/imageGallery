@@ -3,6 +3,7 @@ package com.example.imageGallery.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,9 +27,9 @@ public class Post {
 	
 	private Long likeCount;
 	
-//	@OneToMany // EAGER, FETCH, LAZY 
-//	@JoinColumn(name="commentId")
-//	private Set<Comments> comments = new HashSet<>();
+	@OneToMany(cascade = CascadeType.ALL) // EAGER, FETCH, LAZY 
+	@JoinColumn(name="postid", referencedColumnName = "post_id")
+	private Set<Comments> comments = new HashSet<>();
 	
 	public Post() {
 	}
@@ -38,12 +39,12 @@ public class Post {
 		this.likeCount = 0L;
 	}
 	
-//	public Set<Comments> getComments() {
-//		return comments;
-//	}
-//	public void setComments(Set<Comments> comments) {
-//		this.comments = comments;
-//	}
+	public Set<Comments> getComments() {
+		return comments;
+	}
+	public void setComments(Set<Comments> comments) {
+		this.comments = comments;
+	}
 	public Long getPhotoId() {
 		return photoId;
 	}

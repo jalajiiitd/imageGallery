@@ -1,21 +1,31 @@
 package com.example.imageGallery.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="comments")
 public class Comments {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long commentId;
 	private String comment;
 	
-//	@ManyToOne
-//	private Post post;
+	@Column(name="postid")
+	private Long cp_fk;
+	
+	public Comments() {}
+
+	public Comments(String comment, Long postId) {
+		this.comment = comment;
+		this.cp_fk = postId;
+	}
 	
 	public Long getCommentId() {
 		return commentId;
